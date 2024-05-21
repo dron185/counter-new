@@ -1,13 +1,38 @@
+.title {
+    font-size: 36px;
+    font-weight: 600;
+    margin: 20px 0 100px;
+    color: #7b56bc;
+}
+
 .counterContainer {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+}
+
+.counter {
     text-align: center;
-    margin: 50px auto;
-    border: 5px solid #4c55bf;;
+    border: 5px solid #4c55bf;
     border-radius: 15px;
     padding: 30px;
     max-width: 550px;
     width: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.inputsContainer {
+    padding: 20px 10px;
+    font-size: 24px;
+    border: 5px solid #4c55bf;
+    border-radius: 15px;
+
+    & > *:not(:last-child) {
+        margin-bottom: 10px;
+    }
 }
 
 .buttonsContainer {
@@ -22,9 +47,13 @@
 .score {
     font-size: 56px;
     font-weight: 600;
-    margin-bottom: 30px;
     padding: 20px;
     border: 5px solid #4c55bf;
     border-radius: 15px;
-    color: #4f8c30;
+    color: #148383;
 }
+
+.error {
+    color: red;
+}
+
