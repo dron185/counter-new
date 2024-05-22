@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 import {Button} from "./components/button/Button";
 import S from './components/counter/Counter.module.css'
+import Style from './components/input/Input.module.css'
 import {InputLabel} from "./components/input/InputLabel";
 
 function App() {
@@ -11,7 +12,7 @@ function App() {
     const [btnDisabled, setBtnDisabled] = useState(false)
     const [leftBtnDisabled, setLeftBtnDisabled] = useState(true)
 
-    useEffect(()=>{
+    useEffect(() => {
         const condition = (startValue < 0 || maxValue <= startValue);
         setLeftBtnDisabled(condition);
     }, [startValue, maxValue])
@@ -58,6 +59,7 @@ function App() {
                             newValue={maxValue}
                             setNewValue={setMaxValue}
                             changeInputValue={changeInputValue}
+                            className={ (maxValue <= startValue) ? `${Style.error}` : ''}
                         />
                         <InputLabel
                             htmlFor={"start"}
@@ -66,6 +68,7 @@ function App() {
                             newValue={startValue}
                             setNewValue={setStartValue}
                             changeInputValue={changeInputValue}
+                            className={ (startValue < 0 || maxValue <= startValue) ? `${Style.error}` : ''}
                         />
                     </div>
                     <div className={S.buttonsContainer}>
@@ -78,7 +81,7 @@ function App() {
                 </div>
 
                 <div className={S.counter}>
-                    <h2 className={count === maxValue ? `${S.score} ${S.error}` : S.score}>
+                    <h2 className={((count === maxValue) || (startValue < 0 || maxValue <= startValue)) ? `${S.score} ${S.error}` : S.score}>
                         {display}
                     </h2>
                     <div className={S.buttonsContainer}>

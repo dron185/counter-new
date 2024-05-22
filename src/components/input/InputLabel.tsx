@@ -1,5 +1,5 @@
 import React, {ChangeEvent} from 'react';
-import S from './Input.module.css'
+import Style from './Input.module.css'
 
 type InputLabelPropsType = {
     htmlFor: string
@@ -8,20 +8,21 @@ type InputLabelPropsType = {
     newValue: number
     setNewValue: (newValue: number) => void
     changeInputValue: () => void
+    className: string
 }
 
-export const InputLabel = ({htmlFor, text, id, newValue, setNewValue, changeInputValue}: InputLabelPropsType) => {
+export const InputLabel = ({htmlFor, text, id, newValue, setNewValue, changeInputValue, className}: InputLabelPropsType) => {
 
     const changeInputValueHandler = (e: ChangeEvent<HTMLInputElement>)=> {
         setNewValue(Number(e.currentTarget.value))
         changeInputValue()
     }
-
+    console.log()
     return (
-        <div className={S.inputLabelContainer}>
-            <label className={S.label} htmlFor={htmlFor}>{text}</label>
+        <div className={Style.inputLabelContainer}>
+            <label className={Style.label} htmlFor={htmlFor}>{text}</label>
             <input
-                className={S.input}
+                className={`${Style.input} ${className}`}
                 type={"number"}
                 id={id}
                 value={newValue}
