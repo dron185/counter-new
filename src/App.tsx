@@ -8,6 +8,14 @@ function App() {
     const [count, setCount] = useState(0)
     const [maxValue, setMaxValue] = useState(5)
     const [startValue, setStartValue] = useState(0)
+    const [btnDisabled, setBtnDisabled] = useState(false)
+    const [leftBtnDisabled, setLeftBtnDisabled] = useState(true)
+
+    useEffect(()=>{
+        const condition = (startValue < 0 || maxValue <= startValue);
+        setLeftBtnDisabled(condition);
+    }, [startValue, maxValue])
+
 
     const incrementEvent = () => {
         setCount(count + 1)
@@ -17,14 +25,23 @@ function App() {
         setCount(startValue)
     }
 
-    // useEffect(() => {
-    //     if (count > maxValue) {
-    //         setCount(maxValue)
-    //     }
-    // }, [count, maxValue])
+    let display = ''
+    if (!btnDisabled) {
+        display = count.toString()
+    } else {
+        (startValue < 0 || maxValue <= startValue)
+            ? display = "Incorrect value!"
+            : display = "enter values and press 'set'"
+    }
 
     const setValue = () => {
         setCount(startValue)
+        setLeftBtnDisabled(true)
+        setBtnDisabled(false)
+    }
+
+    const changeInputValue = () => {
+        setBtnDisabled(true)
     }
 
     return (
@@ -40,6 +57,7 @@ function App() {
                             id={"max"}
                             newValue={maxValue}
                             setNewValue={setMaxValue}
+                            changeInputValue={changeInputValue}
                         />
                         <InputLabel
                             htmlFor={"start"}
@@ -47,27 +65,32 @@ function App() {
                             id={"start"}
                             newValue={startValue}
                             setNewValue={setStartValue}
+                            changeInputValue={changeInputValue}
                         />
                     </div>
                     <div className={S.buttonsContainer}>
                         <Button
                             onClickButtonHandler={setValue}
                             title={'set'}
+                            isDisabled={leftBtnDisabled}
                         />
                     </div>
                 </div>
 
                 <div className={S.counter}>
-                    <h2 className={count === maxValue ? `${S.score} ${S.error}` : S.score}>{count}</h2>
+                    <h2 className={count === maxValue ? `${S.score} ${S.error}` : S.score}>
+                        {display}
+                    </h2>
                     <div className={S.buttonsContainer}>
                         <Button
                             onClickButtonHandler={incrementEvent}
                             title={'inc'}
-                            disable={count === maxValue}
+                            isDisabled={count === maxValue ? true : btnDisabled}
                         />
                         <Button
                             onClickButtonHandler={resetEvent}
                             title={'reset'}
+                            isDisabled={btnDisabled}
                         />
                     </div>
                 </div>
@@ -78,3 +101,6 @@ function App() {
 }
 
 export default App;
+
+
+

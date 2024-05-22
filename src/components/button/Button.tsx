@@ -4,13 +4,13 @@ import S from './Button.module.css'
 type ButtonPropsType = {
     onClickButtonHandler: () => void
     title: string
-    disable?: boolean
+    isDisabled: boolean
 }
 
-export const Button = ({onClickButtonHandler, title, disable}: ButtonPropsType) => {
+export const Button = ({onClickButtonHandler, title, isDisabled}: ButtonPropsType) => {
     return (
         <button
-            disabled={disable}
+            disabled={isDisabled}
             onClick={onClickButtonHandler}
             className={S.button}
         >{title}</button>

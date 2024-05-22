@@ -7,12 +7,14 @@ type InputLabelPropsType = {
     id: string
     newValue: number
     setNewValue: (newValue: number) => void
+    changeInputValue: () => void
 }
 
-export const InputLabel = ({htmlFor, text, id, newValue, setNewValue}: InputLabelPropsType) => {
+export const InputLabel = ({htmlFor, text, id, newValue, setNewValue, changeInputValue}: InputLabelPropsType) => {
 
     const changeInputValueHandler = (e: ChangeEvent<HTMLInputElement>)=>{
         setNewValue(Number(e.currentTarget.value))
+        changeInputValue()
     }
 
     return (
@@ -28,3 +30,4 @@ export const InputLabel = ({htmlFor, text, id, newValue, setNewValue}: InputLabe
         </div>
     );
 };
+
