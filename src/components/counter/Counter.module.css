@@ -22,6 +22,7 @@
     flex-direction: column;
     justify-content: space-between;
     gap: 20px;
+    background-color: #94a7e6;
 }
 
 .inputsContainer {
@@ -50,7 +51,7 @@
     padding: 20px;
     border: 5px solid #4c55bf;
     border-radius: 15px;
-    color: #148383;
+    color: rgba(43, 58, 80, 0.95);
 }
 
 .error {

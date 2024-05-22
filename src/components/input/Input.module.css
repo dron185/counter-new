@@ -7,7 +7,8 @@
 
 .label {
     font-weight: 600;
-    color: rgba(59, 74, 94, 0.95);
+    /*color: rgba(59, 74, 94, 0.95);*/
+    color: #fff;
 }
 
 .input {

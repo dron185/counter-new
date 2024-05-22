@@ -12,7 +12,7 @@ export const Button = ({onClickButtonHandler, title, isDisabled}: ButtonPropsTyp
         <button
             disabled={isDisabled}
             onClick={onClickButtonHandler}
-            className={S.button}
+            className={isDisabled ? `${S.button} ${S.buttonDisabled}` : S.button}
         >{title}</button>
     );
 };

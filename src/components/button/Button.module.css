@@ -13,4 +13,9 @@
     background-color: #4c55bf;
     cursor: pointer;
     border: 3px solid #000;
+    color: #fff;
+}
+
+.buttonDisabled {
+    opacity: 0.5;
 }
