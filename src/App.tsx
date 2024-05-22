@@ -13,8 +13,9 @@ function App() {
     const [leftBtnDisabled, setLeftBtnDisabled] = useState(true)
 
     useEffect(() => {
-        const condition = (startValue < 0 || maxValue <= startValue);
-        setLeftBtnDisabled(condition);
+        if (startValue < 0 || maxValue <= startValue) {
+            setLeftBtnDisabled(true);
+        }
     }, [startValue, maxValue])
 
 
@@ -43,6 +44,7 @@ function App() {
 
     const changeInputValue = () => {
         setBtnDisabled(true)
+        setLeftBtnDisabled(false);
     }
 
     return (
