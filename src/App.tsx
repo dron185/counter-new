@@ -27,7 +27,7 @@ function App() {
         setCount(startValue)
     }
 
-    let display = ''
+    let display;
     if (!btnDisabled) {
         display = count.toString()
     } else {
