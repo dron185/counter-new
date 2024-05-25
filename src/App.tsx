@@ -6,11 +6,36 @@ import Style from './components/input/Input.module.css'
 import {InputLabel} from "./components/input/InputLabel";
 
 function App() {
-    const [count, setCount] = useState(0)
+    const [count, setCount] = useState(() => {
+        let startValueAsString = localStorage.getItem("startValue");
+        return startValueAsString ? JSON.parse(startValueAsString) : 0;
+    })
     const [maxValue, setMaxValue] = useState(5)
     const [startValue, setStartValue] = useState(0)
     const [btnDisabled, setBtnDisabled] = useState(false)
     const [leftBtnDisabled, setLeftBtnDisabled] = useState(true)
+
+// local storage
+
+    const setToLocalStorage = () => {
+        localStorage.setItem("startValue", JSON.stringify(startValue))
+        localStorage.setItem("maxValue", JSON.stringify(maxValue))
+    }
+
+    useEffect(() => {
+        let startValueAsString = localStorage.getItem("startValue")
+        if (startValueAsString) {
+            let newStartValue = JSON.parse(startValueAsString);
+            setStartValue(newStartValue)
+        }
+
+        let maxValueAsString = localStorage.getItem("maxValue")
+        if (maxValueAsString) {
+            let newMaxValue = JSON.parse(maxValueAsString);
+            setMaxValue(newMaxValue)
+        }
+    }, []);
+
 
     useEffect(() => {
         if (startValue < 0 || maxValue <= startValue) {
@@ -40,6 +65,7 @@ function App() {
         setCount(startValue)
         setLeftBtnDisabled(true)
         setBtnDisabled(false)
+        setToLocalStorage()
     }
 
     const changeInputValue = () => {
