@@ -17,7 +17,7 @@ import {
 import {AppRootStateType} from "./state/store";
 
 function AppWithRedux() {
-    const { count, maxValue, startValue, btnDisabled, leftBtnDisabled } = useSelector<AppRootStateType, counterStateType>(state => state.count);
+    const { count, maxValue, startValue, btnDisabled, leftBtnDisabled } = useSelector<AppRootStateType, counterStateType>(state => state.data);
     const dispatch = useDispatch();
 
     useEffect(() => {

@@ -6,7 +6,6 @@ export type counterStateType = {
     leftBtnDisabled: boolean
 }
 
-
 export type incrementCountActionType = {
     type: 'INCREMENT-COUNT'
     count: number
@@ -53,6 +52,7 @@ export let initialState: counterStateType = {
     leftBtnDisabled: true
 }
 
+// Reducer:
 export const counterReducer = (state: counterStateType = initialState, action: ActionsType) => {
     switch (action.type) {
         case 'INCREMENT-COUNT':
