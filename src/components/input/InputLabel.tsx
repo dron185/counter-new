@@ -17,7 +17,7 @@ export const InputLabel = ({htmlFor, text, id, newValue, setNewValue, changeInpu
         setNewValue(Number(e.currentTarget.value))
         changeInputValue()
     }
-    console.log()
+
     return (
         <div className={Style.inputLabelContainer}>
             <label className={Style.label} htmlFor={htmlFor}>{text}</label>

@@ -16,3 +16,4 @@ export const Button = ({onClickButtonHandler, title, isDisabled}: ButtonPropsTyp
         >{title}</button>
     );
 };
+
