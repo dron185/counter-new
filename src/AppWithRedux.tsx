@@ -6,7 +6,6 @@ import Style from './components/input/Input.module.css'
 import {InputLabel} from "./components/input/InputLabel";
 import {useDispatch, useSelector} from "react-redux";
 import {
-    counterStateType,
     incrementCountAC,
     setBtnIsDisabledAC,
     setCountValueAC,
@@ -17,7 +16,15 @@ import {
 import {AppRootStateType} from "./state/store";
 
 function AppWithRedux() {
-    const { count, maxValue, startValue, btnDisabled, leftBtnDisabled } = useSelector<AppRootStateType, counterStateType>(state => state.data);
+
+    const count = useSelector<AppRootStateType, number>(state => state.data.count)
+    const maxValue = useSelector<AppRootStateType, number>(state => state.data.maxValue)
+    const startValue = useSelector<AppRootStateType, number>(state => state.data.startValue)
+    const btnDisabled = useSelector<AppRootStateType, boolean>(state => state.data.btnDisabled)
+    const leftBtnDisabled = useSelector<AppRootStateType, boolean>(state => state.data.leftBtnDisabled)
+    // btnDisabled, leftBtnDisabled - сделать через useState.
+
+
     const dispatch = useDispatch();
 
     useEffect(() => {

@@ -7,32 +7,32 @@ export type counterStateType = {
 }
 
 export type incrementCountActionType = {
-    type: 'INCREMENT-COUNT'
+    type: typeof INCREMENT_COUNT
     count: number
 }
 
 export type setCountValueActionType = {
-    type: 'SET-COUNT-VALUE'
+    type: typeof SET_COUNT_VALUE
     startValue: number
 }
 
 export type setStartValueACActionType = {
-    type: 'SET-START-VALUE'
-    startValue: number
+    type: typeof SET_START_VALUE
+    value: number
 }
 
 export type setMaxValueActionType = {
-    type: 'SET-MAX-VALUE'
-    maxValue: number
+    type: typeof SET_MAX_VALUE
+    value: number
 }
 
 export type setBtnIsDisabledActionType = {
-    type: 'SET-BTN-IS-DISABLED'
+    type: typeof SET_BTN_IS_DISABLED
     btnDisabled: boolean
 }
 
 export type setLeftBtnIsDisabledActionType = {
-    type: 'SET-LEFT-BTN-IS-DISABLED'
+    type: typeof SET_LEFT_BTN_IS_DISABLED
     leftBtnDisabled: boolean
 }
 
@@ -43,6 +43,13 @@ export type ActionsType =
     | setMaxValueActionType
     | setBtnIsDisabledActionType
     | setLeftBtnIsDisabledActionType
+
+const INCREMENT_COUNT = 'INCREMENT-COUNT';
+const SET_COUNT_VALUE = 'SET-COUNT-VALUE';
+const SET_START_VALUE = 'SET-START-VALUE';
+const SET_MAX_VALUE = 'SET-MAX-VALUE';
+const SET_BTN_IS_DISABLED = 'SET-BTN-IS-DISABLED';
+const SET_LEFT_BTN_IS_DISABLED = 'SET-LEFT-BTN-IS-DISABLED';
 
 export let initialState: counterStateType = {
     count: 0,
@@ -55,17 +62,17 @@ export let initialState: counterStateType = {
 // Reducer:
 export const counterReducer = (state: counterStateType = initialState, action: ActionsType) => {
     switch (action.type) {
-        case 'INCREMENT-COUNT':
+        case INCREMENT_COUNT:
             return {...state, count: action.count + 1}
-        case 'SET-COUNT-VALUE':
+        case SET_COUNT_VALUE:
             return {...state, count: action.startValue}
-        case 'SET-START-VALUE':
-            return {...state, startValue: action.startValue}
-        case 'SET-MAX-VALUE':
-            return {...state, maxValue: action.maxValue}
-        case 'SET-BTN-IS-DISABLED':
+        case SET_START_VALUE:
+            return {...state, startValue: action.value}
+        case SET_MAX_VALUE:
+            return {...state, maxValue: action.value}
+        case SET_BTN_IS_DISABLED:
             return {...state, btnDisabled: action.btnDisabled}
-        case 'SET-LEFT-BTN-IS-DISABLED':
+        case SET_LEFT_BTN_IS_DISABLED:
             return {...state, leftBtnDisabled: action.leftBtnDisabled}
         default:
             return state
@@ -75,42 +82,42 @@ export const counterReducer = (state: counterStateType = initialState, action: A
 // Action Creators:
 export const incrementCountAC = (count: number): incrementCountActionType => {
     return {
-        type: 'INCREMENT-COUNT',
+        type: INCREMENT_COUNT,
         count
     }
 };
 
 export const setCountValueAC = (startValue: number): setCountValueActionType => {
     return {
-        type: 'SET-COUNT-VALUE',
+        type: SET_COUNT_VALUE,
         startValue
     }
 };
 
-export const setStartValueAC = (startValue: number): setStartValueACActionType => {
+export const setStartValueAC = (value: number): setStartValueACActionType => {
     return {
-        type: 'SET-START-VALUE',
-        startValue
+        type: SET_START_VALUE,
+        value
     }
 };
 
-export const setMaxValueAC = (maxValue: number): setMaxValueActionType => {
+export const setMaxValueAC = (value: number): setMaxValueActionType => {
     return {
-        type: 'SET-MAX-VALUE',
-        maxValue: maxValue
+        type: SET_MAX_VALUE,
+        value
     }
 };
 
 export const setBtnIsDisabledAC = (btnDisabled: boolean): setBtnIsDisabledActionType => {
     return {
-        type: 'SET-BTN-IS-DISABLED',
+        type: SET_BTN_IS_DISABLED,
         btnDisabled
     }
 };
 
 export const setLeftBtnIsDisabledAC = (leftBtnDisabled: boolean): setLeftBtnIsDisabledActionType => {
     return {
-        type: 'SET-LEFT-BTN-IS-DISABLED',
+        type: SET_LEFT_BTN_IS_DISABLED,
         leftBtnDisabled
     }
 };
