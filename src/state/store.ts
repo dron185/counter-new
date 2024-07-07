@@ -5,9 +5,23 @@ const rootReducer = combineReducers({
     data: counterReducer,
 })
 
-export const store = legacy_createStore(rootReducer)
+
+let preloadedState;
+const persistedStateString = localStorage.getItem("app-state");
+if (persistedStateString) {
+    preloadedState = JSON.parse(persistedStateString);
+}
+
+export const store = legacy_createStore(rootReducer, preloadedState)
 // определить автоматически тип всего объекта состояния
 export type AppRootStateType = ReturnType<typeof rootReducer>
+
+
+store.subscribe(()=>{
+    localStorage.setItem('app-state', JSON.stringify(store.getState()))
+   // localStorage.setItem('value', JSON.stringify(store.getState().data.count))
+})
+
 
 type AppStoreType = typeof store; // пример типизации store
 
