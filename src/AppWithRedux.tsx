@@ -35,7 +35,7 @@ function AppWithRedux() {
 
 
     const incrementEvent = () => {
-        dispatch(incrementCountAC(count))
+        dispatch(incrementCountAC())
     }
 
     const resetEvent = () => {

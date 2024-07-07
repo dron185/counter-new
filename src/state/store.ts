@@ -8,6 +8,9 @@ const rootReducer = combineReducers({
 export const store = legacy_createStore(rootReducer)
 // определить автоматически тип всего объекта состояния
 export type AppRootStateType = ReturnType<typeof rootReducer>
+
+type AppStoreType = typeof store; // пример типизации store
+
 // а это, чтобы можно было в консоли браузера обращаться к store в любой момент
 // @ts-ignore
 window.store = store

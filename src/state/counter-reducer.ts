@@ -1,4 +1,4 @@
-export type counterStateType = {
+export type CounterStateType = {
     count: number
     maxValue: number
     startValue: number
@@ -8,7 +8,6 @@ export type counterStateType = {
 
 export type incrementCountActionType = {
     type: typeof INCREMENT_COUNT
-    count: number
 }
 
 export type setCountValueActionType = {
@@ -51,7 +50,7 @@ const SET_MAX_VALUE = 'SET-MAX-VALUE';
 const SET_BTN_IS_DISABLED = 'SET-BTN-IS-DISABLED';
 const SET_LEFT_BTN_IS_DISABLED = 'SET-LEFT-BTN-IS-DISABLED';
 
-export let initialState: counterStateType = {
+export let initialState: CounterStateType = {
     count: 0,
     maxValue: 5,
     startValue: 0,
@@ -60,10 +59,10 @@ export let initialState: counterStateType = {
 }
 
 // Reducer:
-export const counterReducer = (state: counterStateType = initialState, action: ActionsType) => {
+export const counterReducer = (state: CounterStateType = initialState, action: ActionsType): CounterStateType => {
     switch (action.type) {
         case INCREMENT_COUNT:
-            return {...state, count: action.count + 1}
+            return {...state, count: state.count + 1 /*action.count + 1*/ }
         case SET_COUNT_VALUE:
             return {...state, count: action.startValue}
         case SET_START_VALUE:
@@ -80,10 +79,9 @@ export const counterReducer = (state: counterStateType = initialState, action: A
 }
 
 // Action Creators:
-export const incrementCountAC = (count: number): incrementCountActionType => {
+export const incrementCountAC = (): incrementCountActionType => {
     return {
         type: INCREMENT_COUNT,
-        count
     }
 };
 
