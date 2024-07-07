@@ -6,42 +6,14 @@ export type CounterStateType = {
     leftBtnDisabled: boolean
 }
 
-export type incrementCountActionType = {
-    type: typeof INCREMENT_COUNT
-}
-
-export type setCountValueActionType = {
-    type: typeof SET_COUNT_VALUE
-    startValue: number
-}
-
-export type setStartValueACActionType = {
-    type: typeof SET_START_VALUE
-    value: number
-}
-
-export type setMaxValueActionType = {
-    type: typeof SET_MAX_VALUE
-    value: number
-}
-
-export type setBtnIsDisabledActionType = {
-    type: typeof SET_BTN_IS_DISABLED
-    btnDisabled: boolean
-}
-
-export type setLeftBtnIsDisabledActionType = {
-    type: typeof SET_LEFT_BTN_IS_DISABLED
-    leftBtnDisabled: boolean
-}
-
 export type ActionsType =
-    | incrementCountActionType
-    | setCountValueActionType
-    | setStartValueACActionType
-    | setMaxValueActionType
-    | setBtnIsDisabledActionType
-    | setLeftBtnIsDisabledActionType
+    | ReturnType<typeof incrementCountAC>
+    | ReturnType<typeof setCountValueAC>
+    | ReturnType<typeof setStartValueAC>
+    | ReturnType<typeof setMaxValueAC>
+    | ReturnType<typeof setBtnIsDisabledAC>
+    | ReturnType<typeof setLeftBtnIsDisabledAC>
+//  | ReturnType<typeof setValueFromLocalStorageAC>
 
 const INCREMENT_COUNT = 'INCREMENT-COUNT';
 const SET_COUNT_VALUE = 'SET-COUNT-VALUE';
@@ -49,6 +21,7 @@ const SET_START_VALUE = 'SET-START-VALUE';
 const SET_MAX_VALUE = 'SET-MAX-VALUE';
 const SET_BTN_IS_DISABLED = 'SET-BTN-IS-DISABLED';
 const SET_LEFT_BTN_IS_DISABLED = 'SET-LEFT-BTN-IS-DISABLED';
+//const SET_VALUE_FROM_LOCAL_STORAGE = 'SET-VALUE-FROM-LOCAL-STORAGE';
 
 export let initialState: CounterStateType = {
     count: 0,
@@ -62,7 +35,7 @@ export let initialState: CounterStateType = {
 export const counterReducer = (state: CounterStateType = initialState, action: ActionsType): CounterStateType => {
     switch (action.type) {
         case INCREMENT_COUNT:
-            return {...state, count: state.count + 1 /*action.count + 1*/ }
+            return {...state, count: state.count + 1}
         case SET_COUNT_VALUE:
             return {...state, count: action.startValue}
         case SET_START_VALUE:
@@ -73,52 +46,21 @@ export const counterReducer = (state: CounterStateType = initialState, action: A
             return {...state, btnDisabled: action.btnDisabled}
         case SET_LEFT_BTN_IS_DISABLED:
             return {...state, leftBtnDisabled: action.leftBtnDisabled}
+        // case SET_VALUE_FROM_LOCAL_STORAGE:
+        //     return {...state, count: action.count}
         default:
             return state
     }
 }
 
 // Action Creators:
-export const incrementCountAC = (): incrementCountActionType => {
-    return {
-        type: INCREMENT_COUNT,
-    }
-};
+export const incrementCountAC = () => ({type: INCREMENT_COUNT} as const)
+export const setCountValueAC = (startValue: number) => ({type: SET_COUNT_VALUE, startValue} as const)
+export const setStartValueAC = (value: number) => ({type: SET_START_VALUE, value} as const)
+export const setMaxValueAC = (value: number) => ({type: SET_MAX_VALUE, value} as const)
+export const setBtnIsDisabledAC = (btnDisabled: boolean) => ({type: SET_BTN_IS_DISABLED, btnDisabled} as const)
+export const setLeftBtnIsDisabledAC = (leftBtnDisabled: boolean) =>
+    ({type: SET_LEFT_BTN_IS_DISABLED, leftBtnDisabled} as const)
 
-export const setCountValueAC = (startValue: number): setCountValueActionType => {
-    return {
-        type: SET_COUNT_VALUE,
-        startValue
-    }
-};
-
-export const setStartValueAC = (value: number): setStartValueACActionType => {
-    return {
-        type: SET_START_VALUE,
-        value
-    }
-};
-
-export const setMaxValueAC = (value: number): setMaxValueActionType => {
-    return {
-        type: SET_MAX_VALUE,
-        value
-    }
-};
-
-export const setBtnIsDisabledAC = (btnDisabled: boolean): setBtnIsDisabledActionType => {
-    return {
-        type: SET_BTN_IS_DISABLED,
-        btnDisabled
-    }
-};
-
-export const setLeftBtnIsDisabledAC = (leftBtnDisabled: boolean): setLeftBtnIsDisabledActionType => {
-    return {
-        type: SET_LEFT_BTN_IS_DISABLED,
-        leftBtnDisabled
-    }
-};
-
-
+// export const setValueFromLocalStorageAC = (count: number) => ({type: SET_VALUE_FROM_LOCAL_STORAGE, count} as const)
 
